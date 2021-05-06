@@ -194,6 +194,7 @@ pipelines:
             - name: artifactoryIntegration
             - name: DTEnvInfo
           inputResources:
+            - name: helmGitHub_aa
             - name: simplehelmChart_aa
           inputSteps:
             - name: modify_properties
