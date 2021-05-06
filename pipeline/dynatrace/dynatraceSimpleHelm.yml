@@ -2,7 +2,7 @@ resources:
   - name: helmGitHub_aa
     type: GitRepo
     configuration:
-      gitProvider: DT_PIPELINE_INT
+      gitProvider: DT_PIPELINE_AA
       # replace with your pipelines repository
       path: Dynatrace-Asad-Ali/pipelines-demo # if path is modified, change the name as well, per Pipelines doc
       branches:
@@ -35,7 +35,7 @@ resources:
   - name: simplehelmRepoChart_aa
     type: GitRepo
     configuration:
-      gitProvider: DT_PIPELINE_INT
+      gitProvider: DT_PIPELINE_AA
       path: Dynatrace-Asad-Ali/pipelines-demo # replace with your repo
       branches:
         include: main
