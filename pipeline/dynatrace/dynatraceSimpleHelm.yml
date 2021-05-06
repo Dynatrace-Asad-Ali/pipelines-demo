@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: DT_PIPELINE_AA
-      # replace with your pipelines repository
+      # replace with your pipelines repository. Replacing it
       path: Dynatrace-Asad-Ali/pipelines-demo # if path is modified, change the name as well, per Pipelines doc
       branches:
         include: main
