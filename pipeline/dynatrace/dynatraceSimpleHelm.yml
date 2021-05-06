@@ -35,7 +35,7 @@ resources:
   - name: simplehelmRepoChart_aa
     type: GitRepo
     configuration:
-      gitProvider: DT_AA_PIPELINE_INT
+      gitProvider: DT_PIPELINE_INT
       path: Dynatrace-Asad-Ali/pipelines-demo # replace with your repo
       branches:
         include: main
