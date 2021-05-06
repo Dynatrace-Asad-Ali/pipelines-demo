@@ -119,18 +119,20 @@ pipelines:
           onExecute:
             - echo "Installing and configuring OneAgent"
             - kubectl config current-context
-            - kubectl get namespace
-            - kubectl get pods
-            - kubectl create namespace dynatrace
-            - kubectl apply -f https://github.com/Dynatrace/dynatrace-oneagent-operator/releases/latest/download/kubernetes.yaml
-            - kubectl -n dynatrace create secret generic oneagent --from-literal="apiToken=${int_DTEnvInfo_DT_API_TOKEN}" --from-literal="paasToken=${int_DTEnvInfo_DT_PAAS_TOKEN}"
-            - curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/cr.yaml
-            - sed -i "s/ENVIRONMENTID/scu37051/g" cr.yaml
-            - echo ${int_DTEnvInfo_DT_URL}
-            - cat cr.yaml
+            - |
+              nsExist=`kubectl get ns dynatrace | grep dynatrace | wc -l`
+              if [$nsExist -eq 0 ]; then            
+              kubectl create namespace dynatrace
+              kubectl apply -f https://github.com/Dynatrace/dynatrace-oneagent-operator/releases/latest/download/kubernetes.yaml
+              kubectl -n dynatrace create secret generic oneagent --from-literal="apiToken=${int_DTEnvInfo_DT_API_TOKEN}" --from-literal="paasToken=${int_DTEnvInfo_DT_PAAS_TOKEN}"
+              curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/cr.yaml
+              sed -i "s/ENVIRONMENTID/scu37051/g" cr.yaml
+              echo ${int_DTEnvInfo_DT_URL}
+              cat cr.yaml
+              fi
             #- sed -i 's/apiUrl:.*/apiUrl:a/b.*'
             ## configure cr.yaml file when we have all the data needed
-            - kubectl apply -f cr.yaml
+              kubectl apply -f cr.yaml
           onSuccess:
             - echo "Dynatrace OneAgent has beed successfully installed"
           onFailure:
