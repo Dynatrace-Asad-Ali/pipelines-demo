@@ -60,15 +60,33 @@ metadata:
   name: teleport-role
 rules:
 - apiGroups:
-  - ""
+  - "*"
+  - "apps"
   resources:
+  - "*"
   - groups
+  - services
+  - pods
   - serviceaccounts
   - secrets
   - deployments
   - pvcs
   - configmaps
+  - deployments
+  - namespaces
+  - roles
+  - podsecuritypolicies
+  - customresourcedefinitions
+  - clusterroles
+  - rolebindings
+  - clusterrolebindings
+  - events
+  - oneagentapms
+  - leases
+  - nodes
+  - mutatingwebhookconfigurations
   verbs:
+  - use
   - impersonate
   - get
   - watch
