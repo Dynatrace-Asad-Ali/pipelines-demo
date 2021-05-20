@@ -121,7 +121,7 @@ pipelines:
             - DT_URL=${int_DTEnvInfo_DT_URL}
             - echo $DT_URL
             - kubectl config current-context
-            - |
+            - >-
               nsExist=`kubectl get ns dynatrace | grep dynatrace | wc -l`
               export DT_URL=${int_DTEnvInfo_DT_URL}
               echo $nsExist
