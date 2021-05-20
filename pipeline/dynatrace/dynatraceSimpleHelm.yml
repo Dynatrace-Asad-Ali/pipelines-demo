@@ -109,7 +109,7 @@ pipelines:
         configuration:
           affinityGroup: helm_install
           integrations:
-            - name: k8sIntegration
+            - name: k8sIntegration_aa
             - name: DTEnvInfo
           inputSteps:
             - name: helm_build
@@ -132,8 +132,8 @@ pipelines:
                 curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/cr.yaml
                 sed -i -e s/ENVIRONMENTID/${DT_URL}/g cr.yaml
                 kubectl apply -f cr.yaml
+                cat cr.yaml
               fi
-            - cat cr.yaml
             #- sed -i 's/apiUrl:.*/apiUrl:a/b.*'
             ## configure cr.yaml file when we have all the data needed
               
@@ -149,7 +149,7 @@ pipelines:
           affinityGroup: helm_install
           releaseName: busybox${run_number}
           integrations:
-            - name: k8sIntegration
+            - name: k8sIntegration_aa
           inputResources:
             - name: simplehelmChart_aa
             - name: simpleDockerImage_ab
